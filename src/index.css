@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'DancingScript';
+  src: url('./assets/DancingScript-SemiBold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Roboto-SemiBold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@theme {
+  --font-roboto: "Roboto", sans-serif;
+  --font-Dancingscript: "DancingScript", sans-serif;
+      --color-blue-primary: #2A3CDB;
+      --color-blue-secondary: #5CBADB;
+      --color-main-blue: #4ecaf321;
+      --color-purple-primary: #512ADB;
+      --color-blue-light: #2A74DB;
+      --color-purple-secondary: #8B2ADB;
+      --color-yellow-primary: #dfca13;
+      --color-modal: #00000056;
+}
