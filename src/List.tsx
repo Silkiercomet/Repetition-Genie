@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
  export interface Item {
   header: string;
   id: number;
@@ -9,15 +7,14 @@ import React, { useState } from 'react';
 
 interface Props {
   items: Item[];
-  setList: (items: Item[]) => void;
+  setList: (itemId: number) => void;
+  review: boolean;
 }
 
-const ItemList: React.FC<Props> = ({ items, setList }) => {
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+const ItemList: React.FC<Props> = ({ items, setList, review = false }) => {
 
   const handleAddItem = (id: number) => {
-    setSelectedItems([...selectedItems, id]);
-    setList(items.filter(item => selectedItems.includes(item.id)));
+    setList(id)
   };
 
   return (
@@ -27,12 +24,12 @@ const ItemList: React.FC<Props> = ({ items, setList }) => {
         <div key={item.id} className="bg-gray-100 rounded-lg p-4 mb-4">
           <h2 className="text-lg font-bold">{item.header}</h2>
           <p>ID: {item.id}</p>
-          <button
+          { review && <button
             onClick={() => handleAddItem(item.id)}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Repasado
-          </button>
+          </button>}
         </div>
         ))
       ) : (
