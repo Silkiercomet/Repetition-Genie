@@ -26,7 +26,7 @@ const Modal: React.FC<Props> = ({ onClose, onSubmit }) => {
   return (
     <div className="flex items-center justify-center ">
       <div onClick={onClose} className='fixed inset-0 bg-modal z-20'></div>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 fixed top-1/2 z-30 ">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96 fixed top-1/2 -translate-y-1/2 z-30 ">
         <h2 className="text-xl font-bold mb-4">Create New Item</h2>
         <input
           type="text"
