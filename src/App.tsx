@@ -18,7 +18,7 @@ function App() {
   }
   const handleSubmit = (newItem: Item) => {
     setItems([...items, newItem]);
-    console.log(newItem)
+
   };
 
   const updateItemCycle = (itemId: number) => {
@@ -26,7 +26,7 @@ function App() {
       item.id === itemId ? { ...item, cicle: item.cicle + 1 } : item
     );
     setItems(updatedItems);
-    console.log(updatedItems);
+
   };
 
   useEffect(() => {
@@ -73,9 +73,9 @@ function App() {
         <h1 className='py-4 text-4xl md:text-5xl text-center text-blue-primary font-Dancingscript'>Repetition<span className='text-yellow-primary'>Genie!</span></h1>
       </header>
       <main>
-        <h3>Repasar hoy</h3>
+        <h3 className='px-4'>Repasar hoy</h3>
         <ItemList items={todayItems} setList={updateItemCycle} review={true}/>
-        <h3>Próximas a repasar</h3>
+        <h3 className='px-4'>Próximas a repasar</h3>
         <ItemList items={upcomingItems} setList={updateItemCycle} review={false}/>
         
       </main>
