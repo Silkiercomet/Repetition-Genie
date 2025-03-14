@@ -4,12 +4,7 @@ import ItemList, { Item } from './List'
 
 function App() {
   const [modal, setModal] = useState(false)
-  const [items, setItems] = useState<Item[]>([
-    { id: 1, header: 'Example Item 1', date: new Date().toISOString().slice(0, 10), cicle: 0 },
-    { id: 2, header: 'Example Item 2', date: new Date(Date.now() + 86400000).toISOString().slice(0, 10), cicle: 2 }, // Tomorrow
-    { id: 3, header: 'Example Item 3', date: new Date(Date.now() + 172800000).toISOString().slice(0, 10), cicle: 1 }, // Two days from now
-
-  ])
+  const [items, setItems] = useState<Item[]>([]);
   const [todayItems, setTodayItems] = useState<Item[]>([]);
   const [upcomingItems, setUpcomingItems] = useState<Item[]>([]);
 
@@ -18,7 +13,7 @@ function App() {
   }
   const handleSubmit = (newItem: Item) => {
     setItems([...items, newItem]);
-
+    localStorage.setItem('items', JSON.stringify([...items, newItem]));
   };
 
   const updateItemCycle = (itemId: number) => {
@@ -26,7 +21,7 @@ function App() {
       item.id === itemId ? { ...item, cicle: item.cicle + 1 } : item
     );
     setItems(updatedItems);
-
+    localStorage.setItem('items', JSON.stringify(updatedItems));
   };
 
   useEffect(() => {
@@ -67,6 +62,12 @@ function App() {
 
   }, [items])
 
+  useEffect(() => {
+    const storedItems = localStorage.getItem('items');
+    if (storedItems) {
+      setItems(JSON.parse(storedItems));
+    }
+  }, []);
   return (
     <div className='font-roboto min-h-[100vh] bg-main-blue relative z-10'>
       <header>
@@ -79,8 +80,8 @@ function App() {
         <ItemList items={upcomingItems} setList={updateItemCycle} review={false}/>
         
       </main>
-      <footer className='absolute bottom-1 left-4 right-4'>
-        <button onClick={handleModal}>Add Reminder</button>
+      <footer className='absolute bottom-4 left-4 right-4 grid place-items-center'>
+        <button  onClick={handleModal} className="bg-blue-primary ease-in-out cursor-pointer border-2 border-transparent hover:text-blue-primary hover:border-blue-primary hover:bg-transparent duration-300 text-white font-medium py-2 px-4 rounded-lg shadow-md">Add Reminder</button>
       </footer>
       {modal && <Form onClose={handleModal} onSubmit={handleSubmit} />}
     </div>
